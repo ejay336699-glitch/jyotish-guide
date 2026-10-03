@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Jyotish Guide — Learn Vedic astrology. Educational tools for Free, Learn, and Practitioner levels. Classic books and study resources.">
-  <title>Jyotish Guide — Learn Vedic Astrology</title>
+  <meta name="description" content="Jyotish Guide — Vedic astrology app. $6 USD per month, 40 AI questions included. Educational only.">
+  <title>Jyotish Guide — Vedic astrology app</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
       <a class="logo" href="index.html">Jyotish Guide</a>
       <nav>
         <a href="#about">About</a>
-        <a href="#levels">Levels</a>
+        <a href="#app">The app</a>
         <a href="#books">Books</a>
         <a href="privacy.html">Privacy</a>
       </nav>
@@ -24,13 +24,20 @@
     <section class="hero">
       <div class="wrap">
         <p class="eyebrow">Vedic astrology · Educational</p>
-        <h1>Jyotish Guide — Learn Vedic astrology</h1>
+        <h1>Jyotish Guide</h1>
         <p class="lead">
-          A clear, modern path into classical Jyotish: charts, dashas, yogas, and
-          the living tradition of Vedic astrology — taught for study, not as
-          medical or financial advice.
+          A browser app for classical Jyotish: charts, timing, and study notes.
+          Educational only — not medical, legal, or financial advice.
         </p>
-        <a class="btn" href="#levels">Explore learning paths</a>
+        <button class="btn" id="open-app" type="button">Open the app</button>
+        <p id="pay-status" class="install-note" hidden></p>
+        <p class="install-note">
+          Install: once the app is open in a phone or desktop browser, use the browser’s
+          install or Add to Home Screen. That is the download. There is no app store listing.
+        </p>
+        <p class="honest">
+          Paid questions switch on after the payment server is connected; charts run in the browser only after that server confirms an active Member subscription.
+        </p>
       </div>
     </section>
 
@@ -45,56 +52,55 @@
           revisit at your own pace.
         </p>
         <p>
-          Birth data you enter stays on your device for study. We do not offer
-          medical diagnoses, therapy, or investment guidance. Jyotish here is a
-          cultural and intellectual practice: reading classical texts, learning
-          chart structure, and building interpretive skill over time.
+          The app is not free to use. Birth data you enter is meant to stay on
+          your device for study. We do not offer medical diagnoses, therapy, legal
+          counsel, or investment guidance.
         </p>
       </div>
     </section>
 
-    <section id="levels" class="section levels">
+    <section id="app" class="section levels">
       <div class="wrap">
-        <h2>Free · Learn · Practitioner</h2>
-        <p class="section-intro">Three educational tracks — pick the depth that fits you.</p>
+        <h2>Jyotish Guide · $6 a month</h2>
+        <p class="section-intro">
+          One subscription. Card statements say JYOTISH GUIDE.
+          Open the app starts Stripe Checkout for the Member plan — it does not open a free copy.
+        </p>
         <div class="cards">
-          <article class="card">
-            <h3>Free</h3>
-            <p>
-              Start with the sky map: signs, planets, and houses in plain language.
-              Open charts for curiosity, follow short lessons on the zodiac wheel,
-              and get oriented without any commitment.
-            </p>
-            <ul>
-              <li>Basic chart overview</li>
-              <li>Glossary of core terms</li>
-              <li>Self-paced orientation</li>
-            </ul>
-          </article>
           <article class="card featured">
-            <h3>Learn</h3>
+            <h3>Member</h3>
+            <p class="price">$6 USD / month</p>
             <p>
-              Structured study for serious beginners: aspects (dṛṣṭi), yogas,
-              strength basics, and how traditional texts describe life themes.
-              Ideal if you want guided lessons and practice charts.
+              40 AI questions included each month. This is the plan that unlocks the app.
             </p>
             <ul>
-              <li>Guided lesson paths</li>
-              <li>Practice interpretations</li>
-              <li>Classical terminology</li>
+              <li>Stripe Checkout, kind member</li>
+              <li>40 included questions each month</li>
+              <li>Statement descriptor: JYOTISH GUIDE</li>
             </ul>
           </article>
           <article class="card">
-            <h3>Practitioner</h3>
+            <h3>When questions run out</h3>
             <p>
-              Deeper technique for students building professional-level literacy:
-              advanced daśā work, divisional charts (vargas), and careful reading
-              of primary sources. Still educational — not a license or certification.
+              Charts and the rest of the app keep working. Only new questions wait
+              for a top-up or the next month.
             </p>
             <ul>
-              <li>Vargas &amp; timing systems</li>
-              <li>Primary-source study</li>
-              <li>Case-style exercises</li>
+              <li>10 questions for $3</li>
+              <li>40 questions for $9</li>
+              <li>Donations do not add questions</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Bring your own key (BYOK)</h3>
+            <p>
+              Optional, and only after you are in the app. Questions on your own key
+              are unlimited and billed by that provider, not by Jyotish Guide.
+            </p>
+            <ul>
+              <li>Optional</li>
+              <li>Unlimited on that key</li>
+              <li>Billed by the provider</li>
             </ul>
           </article>
         </div>
@@ -190,8 +196,51 @@
   <footer class="site-footer">
     <div class="wrap">
       <p>© 2026 Jyotish Guide. Educational content only — not medical, legal, or financial advice.</p>
-      <p><a href="privacy.html">Privacy</a> · Birth data stays local on your device when you use our tools.</p>
+      <p><a href="privacy.html">Privacy</a></p>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      // Public billing server origin, no trailing slash. Leave empty until that server
+      // is deployed with STRIPE_SECRET_KEY. GitHub Pages cannot charge a card itself.
+      var BILLING_ORIGIN = '';
+      var btn = document.getElementById('open-app');
+      var status = document.getElementById('pay-status');
+
+      function show(message) {
+        status.hidden = false;
+        status.textContent = message;
+      }
+
+      btn.addEventListener('click', function () {
+        var origin = BILLING_ORIGIN.replace(/\/$/, '');
+        if (!origin) {
+          show('Checkout cannot charge yet. This GitHub Pages site has no payment server. The $6/month Member Checkout (kind member) runs only after the billing server is on a public URL with STRIPE_SECRET_KEY.');
+          return;
+        }
+        btn.disabled = true;
+        show('Opening Stripe Checkout for the Member plan ($6/month)…');
+        fetch(origin + '/api/checkout', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ kind: 'member' })
+        }).then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            return { ok: res.ok, status: res.status, data: data };
+          });
+        }).then(function (out) {
+          if (!out.ok || typeof out.data.url !== 'string') {
+            throw new Error(typeof out.data.error === 'string' ? out.data.error : ('Checkout failed (' + out.status + ').'));
+          }
+          window.location.assign(out.data.url);
+        }).catch(function (err) {
+          show(err && err.message ? err.message : 'Checkout failed.');
+          btn.disabled = false;
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
