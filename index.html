@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Jyotish Guide — Vedic astrology app. $6 USD per month, 40 AI questions included. Educational only.">
+  <meta name="description" content="Jyotish Guide — Vedic astrology app. $6 USD per month, or yearly early bird $42 USD per year (then $54 per year). 40 AI questions included each month. Educational only.">
   <title>Jyotish Guide — Vedic astrology app</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -29,7 +29,10 @@
           A browser app for classical Jyotish: charts, timing, and study notes.
           Educational only — not medical, legal, or financial advice.
         </p>
-        <button class="btn" id="open-app" type="button">Open the app</button>
+        <p class="hero-actions">
+          <button class="btn" id="open-app" type="button">Open the app · $6 per month</button>
+          <button class="btn" id="open-year" type="button">Yearly early bird · $42 per year</button>
+        </p>
         <p id="pay-status" class="install-note" hidden></p>
         <p class="install-note">
           Install: once the app is open in a phone or desktop browser, use the browser’s
@@ -61,10 +64,11 @@
 
     <section id="app" class="section levels">
       <div class="wrap">
-        <h2>Jyotish Guide · $6 a month</h2>
+        <h2>Jyotish Guide · $6 a month, or yearly</h2>
         <p class="section-intro">
-          One subscription. Card statements say JYOTISH GUIDE.
-          Open the app starts Stripe Checkout for the Member plan — it does not open a free copy.
+          The $6 per month Member plan stays. Yearly membership is another way to buy the same access.
+          Card statements say JYOTISH GUIDE.
+          Open the app starts Stripe Checkout — it does not open a free copy.
         </p>
         <div class="cards">
           <article class="card featured">
@@ -77,6 +81,21 @@
               <li>Stripe Checkout, kind member</li>
               <li>40 included questions each month</li>
               <li>Statement descriptor: JYOTISH GUIDE</li>
+            </ul>
+          </article>
+          <article class="card featured">
+            <h3>Yearly membership</h3>
+            <p class="price">$42 USD per year early bird</p>
+            <p>
+              Another way to buy the same Member access. The $6 per month plan is still available.
+              Early bird is $42 per year for a new yearly membership from 2026-10-03T00:00:00-07:00
+              through 2027-01-03T00:00:00-07:00 (America/Phoenix). That price stays $42 on every later
+              yearly renewal. After that window, a new yearly membership is $54 per year.
+            </p>
+            <ul>
+              <li>Stripe Checkout, kind member_year</li>
+              <li>40 included questions each month</li>
+              <li>Same Member access as the monthly plan</li>
             </ul>
           </article>
           <article class="card">
@@ -213,19 +232,22 @@
         status.textContent = message;
       }
 
-      btn.addEventListener('click', function () {
+      var yearBtn = document.getElementById('open-year');
+
+      function startCheckout(kind, pending, button) {
         var origin = BILLING_ORIGIN.replace(/\/$/, '');
         if (!origin) {
-          show('Checkout cannot charge yet. This GitHub Pages site has no payment server. The $6/month Member Checkout (kind member) runs only after the billing server is on a public URL with STRIPE_SECRET_KEY.');
+          show('Checkout cannot charge yet. This GitHub Pages site has no payment server. Monthly Member Checkout (kind member, $6 per month) and yearly Checkout (kind member_year) run only after the billing server is on a public URL with STRIPE_SECRET_KEY.');
           return;
         }
         btn.disabled = true;
-        show('Opening Stripe Checkout for the Member plan ($6/month)…');
+        yearBtn.disabled = true;
+        show(pending);
         fetch(origin + '/api/checkout', {
           method: 'POST',
           credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ kind: 'member' })
+          body: JSON.stringify({ kind: kind })
         }).then(function (res) {
           return res.json().catch(function () { return {}; }).then(function (data) {
             return { ok: res.ok, status: res.status, data: data };
@@ -238,7 +260,15 @@
         }).catch(function (err) {
           show(err && err.message ? err.message : 'Checkout failed.');
           btn.disabled = false;
+          yearBtn.disabled = false;
         });
+      }
+
+      btn.addEventListener('click', function () {
+        startCheckout('member', 'Opening Stripe Checkout for the monthly Member plan ($6 per month)…', btn);
+      });
+      yearBtn.addEventListener('click', function () {
+        startCheckout('member_year', 'Opening Stripe Checkout for yearly membership. The server charges $42 per year during the early-bird window and $54 per year after it…', yearBtn);
       });
     })();
   </script>

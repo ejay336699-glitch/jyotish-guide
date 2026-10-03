@@ -98,6 +98,12 @@ nav a:hover { color: var(--text); }
   border: none;
 }
 .btn:hover { text-decoration: none; filter: brightness(1.08); }
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+}
 button.btn {
   font: inherit;
   cursor: pointer;
