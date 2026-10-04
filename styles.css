@@ -98,6 +98,19 @@ nav a:hover { color: var(--text); }
   border: none;
 }
 .btn:hover { text-decoration: none; filter: brightness(1.08); }
+/* Membership chips: landing gradient peach → amber → magenta. Yearly is not a white pill. */
+#open-app {
+  background: linear-gradient(115deg, #ffe0d0 0%, #ffb703 100%);
+  color: #2c1224;
+  box-shadow: 0 6px 18px rgba(255, 183, 3, 0.32);
+}
+#open-year {
+  background: linear-gradient(115deg, #ffb703 0%, #e83e8c 100%);
+  color: #fffaf7;
+  box-shadow: 0 6px 18px rgba(232, 62, 140, 0.34);
+}
+#open-app:hover { color: #2c1224; }
+#open-year:hover { color: #fffaf7; }
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
