@@ -181,39 +181,6 @@ button.btn:disabled {
 }
 .card li { margin-bottom: 0.35rem; }
 
-.book-feature {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-}
-.book-feature h3 { margin-top: 0; }
-.link-out { font-weight: 600; }
-
-.buy-heading { margin-top: 0.5rem; }
-.buy-list {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0 1.5rem;
-}
-.buy-list li {
-  margin-bottom: 0.65rem;
-  padding: 0.85rem 1rem;
-  background: var(--bg-elevated);
-  border-radius: 10px;
-  border: 1px solid var(--border);
-}
-.buy-list a { font-weight: 500; }
-
-.disclosure {
-  font-size: 0.9rem;
-  color: var(--muted);
-  border-left: 3px solid var(--neon);
-  padding: 0.65rem 0 0.65rem 1rem;
-  margin: 1.5rem 0 0;
-}
-
 .site-footer {
   padding: 2rem 0 2.5rem;
   border-top: 1px solid var(--border);
