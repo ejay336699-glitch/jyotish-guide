@@ -30,7 +30,7 @@
         </p>
         <p class="hero-actions">
           <button class="btn" id="open-app" type="button">Open the app · $6 per month</button>
-          <button class="btn" id="open-year" type="button">Yearly early bird · $42 per year</button>
+          <button class="btn" id="open-year" type="button">Yearly · $42 per year</button>
         </p>
         <p id="pay-status" class="install-note" hidden></p>
         <p class="install-note">
@@ -47,11 +47,7 @@
       <div class="wrap narrow">
         <h2>What is Jyotish Guide?</h2>
         <p>
-          Jyotish Guide is an educational project for people who want to
-          understand Vedic astrology on its own terms. We focus on core concepts —
-          the twelve signs (rāśis), nine grahas, houses (bhāvas), nakṣatras, and
-          timing systems such as Vimśottarī daśā — with explanations you can
-          revisit at your own pace.
+          Jyotish Guide is a tool that teaches you Vedic astrology. It is built to feel straightforward: you open a chart and it walks you through the layers, from signs and houses to nakshatras and dashas, and it pulls that old system down into something you can actually use.
         </p>
         <p>
           The app is not free to use. Birth data you enter is meant to stay on
@@ -82,11 +78,9 @@
           </article>
           <article class="card featured">
             <h3>Yearly membership</h3>
-            <p class="price">$42 USD per year early bird</p>
+            <p class="price">$42 USD per year</p>
             <p>
-              Same full app access and the same $1 DeepSeek allowance as the Member plan. There is no question limit in the app. Early bird is
-              $42 per year for a new yearly membership, then new yearly memberships are $54 per year after
-              the early-bird window.
+              Same full app access and the same $1 DeepSeek allowance as the Member plan. There is no question limit in the app. Yearly is $42 if you join by December 25, 2026. That price is my thanks for adopting Jyotish Guide early. After December 25, 2026, a new yearly membership is $54.
             </p>
             <ul>
               <li>No question limit in the app</li>
@@ -180,7 +174,7 @@
         startCheckout('member', 'Opening Stripe Checkout for the monthly Member plan ($6 per month)…', btn);
       });
       yearBtn.addEventListener('click', function () {
-        startCheckout('member_year', 'Opening Stripe Checkout for yearly membership. The server charges $42 per year during the early-bird window and $54 per year after it…', yearBtn);
+        startCheckout('member_year', 'Opening Stripe Checkout for yearly membership. Yearly is $42 if you join by December 25, 2026. That price is my thanks for adopting Jyotish Guide early. After December 25, 2026, a new yearly membership is $54.', yearBtn);
       });
     })();
   </script>
