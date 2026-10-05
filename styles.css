@@ -190,3 +190,12 @@ button.btn:disabled {
 .site-footer p { margin: 0.35rem 0; }
 
 h1, h2, h3 { line-height: 1.25; }
+
+.hero-lotus {
+  display: block;
+  width: min(100%, 420px);
+  height: auto;
+  margin: 0 auto 1.5rem;
+  border-radius: 18px;
+  background: #fff;
+}
