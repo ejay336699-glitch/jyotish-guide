@@ -199,3 +199,13 @@ h1, h2, h3 { line-height: 1.25; }
   border-radius: 18px;
   background: #fff;
 }
+
+/* Turquoise + gold mandala (same light variant as the app), centred as a round medallion. */
+.hero-mandala {
+  width: min(100%, 440px);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1px rgba(214, 170, 72, 0.45),
+    0 0 28px rgba(0, 229, 192, 0.3),
+    0 0 60px rgba(214, 170, 72, 0.14);
+}
